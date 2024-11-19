@@ -1,6 +1,10 @@
 /bin/
 /lib/
 /share/
+/Scripts/
 __pycache__/
 pyvenv.cfg
 lib64
+/embedEtcd.yaml
+/standalone_embed.sh
+/user.yaml
