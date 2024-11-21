@@ -8,7 +8,7 @@ export default function Home() {
         <form
           method="post"
           encType="multipart/form-data"
-          action="http://localhost:8888/"
+          action="http://localhost:8888/test"
           className="w-full space-y-8"
         >
           <h1 className="text-center text-3xl font-semibold text-white">
@@ -28,6 +28,7 @@ export default function Home() {
               type="file"
               className="hidden"
               accept=".jpg, .jpeg, .png"
+              name = "file-upload" // call this in backend 
             />
           </div>
 
