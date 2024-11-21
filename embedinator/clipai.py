@@ -1,4 +1,7 @@
-from transformers import CLIPProcessor, CLIPModel
+import clip
+import torch
 
-model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
-processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model, preprocess = clip.load("ViT-B/32", device=device)
+
+clip.tokenize("one two three")
