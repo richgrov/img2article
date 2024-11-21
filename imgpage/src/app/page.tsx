@@ -9,7 +9,7 @@ export default function Home() {
         <form
           method="post"
           encType="multipart/form-data"
-          action="http://localhost:8888/test"
+          action="http://localhost:8888"
           className="w-full space-y-8"
         >
           <h1 className="text-center text-3xl font-semibold text-white">
