@@ -2,6 +2,7 @@
 import { useRef } from "react";
 
 export default function Home() {
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-black text-white">
       <main className="flex flex-col items-center w-full max-w-2xl space-y-10">
