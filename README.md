@@ -7,7 +7,7 @@ source bin/activate
 pip install -r requirements.txt
 ```
 
-Windows
+Windows (requires Bash)
 ```bash
 python -m venv .
 source Scripts/activate
