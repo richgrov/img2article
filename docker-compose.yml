@@ -1,0 +1,12 @@
+services:
+  imgpage:
+    image: timmyjinks/img2article-frontend
+    build: ./imgpage
+    ports:
+      - "3000:3000"
+    restart: always
+  backendinator:
+    image: timmyjinks/img2article-backend
+    build: ./backendinator
+    ports:
+      - "8888:8888"

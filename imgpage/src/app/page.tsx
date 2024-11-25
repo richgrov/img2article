@@ -1,8 +1,6 @@
 "use client";
-import { useRef } from "react";
 
 export default function Home() {
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-black text-white">
       <main className="flex flex-col items-center w-full max-w-2xl space-y-10">
@@ -16,7 +14,6 @@ export default function Home() {
             Insert an Image
           </h1>
 
-          
           <div className="flex justify-center items-center space-y-4">
             <label
               htmlFor="file-upload"
@@ -29,15 +26,16 @@ export default function Home() {
               type="file"
               className="hidden"
               accept=".jpg, .jpeg, .png"
-              name = "file-upload" // call this in backend 
+              name="file-upload" // call this in backend
             />
           </div>
 
-          
           <div className="flex justify-between items-center gap-6 bg-gray-700 p-4 rounded-lg shadow-md">
             <div className="text-gray-300 font-medium text-sm">
               Accepted file types:{" "}
-              <span className="font-semibold text-indigo-400">.jpg, .jpeg, .png</span>
+              <span className="font-semibold text-indigo-400">
+                .jpg, .jpeg, .png
+              </span>
             </div>
             <button
               type="submit"
