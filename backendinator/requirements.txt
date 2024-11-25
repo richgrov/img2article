@@ -3,6 +3,7 @@ charset-normalizer==3.4.0
 coloredlogs==15.0.1
 environs==9.5.0
 filelock==3.16.1
+Flask==3.1.0
 flatbuffers==24.3.25
 fsspec==2024.10.0
 grpcio==1.68.0
