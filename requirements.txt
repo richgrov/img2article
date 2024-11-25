@@ -1,10 +1,12 @@
 certifi==2024.8.30
 charset-normalizer==3.4.0
+clip @ git+https://github.com/openai/CLIP.git@dcba3cb2e2827b402d2701e7e1c7d9fed8a20ef1
 coloredlogs==15.0.1
 environs==9.5.0
 filelock==3.16.1
 flatbuffers==24.3.25
 fsspec==2024.10.0
+ftfy==6.3.1
 grpcio==1.68.0
 huggingface-hub==0.26.2
 humanfriendly==10.0
@@ -47,9 +49,11 @@ six==1.16.0
 sympy==1.13.1
 tokenizers==0.20.3
 torch==2.5.1+cu118
+torchvision==0.2.0
 tqdm==4.67.0
 transformers==4.46.3
 typing_extensions==4.12.2
 tzdata==2024.2
 ujson==5.10.0
 urllib3==2.2.3
+wcwidth==0.2.13
