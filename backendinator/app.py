@@ -1,4 +1,5 @@
 from flask import Flask, request
+from PIL import Image
 import AIinator
 
 app = Flask(__name__)
@@ -6,9 +7,10 @@ app = Flask(__name__)
 
 @app.route("/", methods=["POST"])
 def image_encoding():
-    data = request.files["file-upload"]
+    data = request.files["file-upload"].stream.read()
+    image = Image.open(data)
 
-    AIinator.embed_image(data)
+    AIinator.embed_image(image)
 
     return "200 OKAY"
 

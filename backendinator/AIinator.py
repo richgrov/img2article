@@ -17,8 +17,7 @@ model, preprocess = clip.load("ViT-B/32", device=device)
 #     print(text_features)
 
 def embed_image(image: Image) -> np.ndarray:
-    image_binaries = Image.stream.read()
-    image = preprocess(Image.open(image_binaries)).unsqueeze(0).to(device)
+    image = preprocess(image).unsqueeze(0).to(device)
 
     with torch.no_grad():
         image_embedding = model.encode_image(image)
