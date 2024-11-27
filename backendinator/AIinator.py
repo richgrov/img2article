@@ -1,6 +1,6 @@
 import clip
-import torch
 import numpy as np
+import torch
 from PIL import Image
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -16,6 +16,7 @@ model, preprocess = clip.load("ViT-B/32", device=device)
 
 #     print(text_features)
 
+
 def embed_image(image: Image) -> np.ndarray:
     image = preprocess(image).unsqueeze(0).to(device)
 
@@ -23,6 +24,7 @@ def embed_image(image: Image) -> np.ndarray:
         image_embedding = model.encode_image(image)
         image_values = image_embedding.flatten().cpu().numpy()
         return image_values
+
 
 def embed_text(text_str: str) -> np.ndarray:
     text = clip.tokenize(text_str).to(device)
