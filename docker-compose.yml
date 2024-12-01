@@ -1,12 +1,17 @@
 services:
   imgpage:
-    image: timmyjinks/img2article-frontend
+    image: timmijinks/img2article:frontend
     build: ./imgpage
     ports:
       - "3000:3000"
     restart: always
   backendinator:
-    image: timmyjinks/img2article-backend
+    image: timmijinks/img2article:backend
     build: ./backendinator
     ports:
       - "8888:8888"
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
