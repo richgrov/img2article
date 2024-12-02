@@ -22,9 +22,6 @@ class MilvusDAL:
     def insert(self, data):
         self.client.insert(collection_name=collection_name, data=data)
 
-    def delete(self, search):
-        self.client.delete(collection_name=collection_name, filter=search)
-
     def query(self, search):
         return self.client.search(
             collection_name=collection_name,

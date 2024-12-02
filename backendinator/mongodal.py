@@ -12,8 +12,5 @@ class MongoDAL:
     def insert(self, data):
         self.collection.insert(data)
 
-    def delete(self, search):
-        self.collection.delete_many(search)
-
     def query(self, search):
         return self.collection.find(search).limit(5)
