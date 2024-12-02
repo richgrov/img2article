@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Typewriter from "typewriter-effect";
+import tysonCloud from "@/tysoncloud.png";
+import Image from "next/image";
 
 export default function Home() {
   const [inputVisible, setInputVisible] = useState(false);
@@ -63,9 +65,9 @@ export default function Home() {
     <div className="relative flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-[url('/img/ai.jpg')] bg-cover bg-center bg-no-repeat text-white">
       <div className="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
 
-      <img
-        src="/img/tysoncloud.png"
-        className="absolute top-4 right-4 z-20 h-24"
+      <Image
+        src={tysonCloud}
+        className="absolute top-4 right-4 z-20 h-24 w-auto"
         alt="Logo"
       />
 
