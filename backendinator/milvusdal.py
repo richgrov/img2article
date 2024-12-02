@@ -9,7 +9,7 @@ dimensions = 256
 class MilvusDAL:
 
     def __init__(self, uri='http://localhost:19530', token="root:Milvus"):
-        self.client = MilvusClient("milvus_demo.db");
+        self.client = MilvusClient("milvus_demo.db")
         # self.client = MilvusClient(uri=uri, token=token)
         self.embedding_fn = model.DefaultEmbeddingFunction()
 
