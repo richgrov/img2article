@@ -28,7 +28,8 @@ class MilvusDAL:
     def query(self, search):
         return self.client.search(
             collection_name=collection_name,
-            data=self.embedding_fn.encode_queries([search])
+            data=self.embedding_fn.encode_queries([search]),
+            limit=5
         )
 
     

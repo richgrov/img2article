@@ -7,8 +7,7 @@ class MongoDAL:
 
     def __init__(self, uri="mongodb://localhost:27017/"):
         self.client = MongoClient(uri);
-        self.database = self.client[database_name]
-        self.collection = self.database[collection_name]
+        self.collection = self.client[database_name][collection_name]
 
     def insert(self, data):
         self.collection.insert(data)
@@ -17,4 +16,4 @@ class MongoDAL:
         self.collection.delete_many(search)
 
     def query(self, search):
-        self.collection.find(search)
+        return self.collection.find(search).limit(5)
