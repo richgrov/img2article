@@ -42,7 +42,7 @@ function FileUpload(props: { onResponse: (result: any) => void }) {
         <div className="flex justify-center items-center space-y-4">
           <label
             htmlFor="file-upload"
-            className="cursor-pointer bg-gradient-to-r from-gray-800 to-gray-600 text-white py-3 px-8 rounded-lg shadow-lg hover:bg-gradient-to-l transition duration-300 ease-in-out text-lg font-semibold"
+            className="cursor-pointer bg-gradient-to-r from-gray-800 to-gray-600 text-white py-3 px-8 rounded-lg shadow-lg hover:bg-gradient-to-l text-lg font-semibold"
           >
             Upload Image
           </label>
@@ -96,12 +96,12 @@ export default function Home() {
         alt="Logo"
       />
 
-      <main className="relative flex flex-col items-center w-full max-w-2xl space-y-10 z-30">
-        <div
-          className={` text-center text-white text-4xl space-y-2 transition-transform duration-1000 ease-in-out ${
-            animateUp ? "-translate-y-20" : ""
-          }`}
-        >
+      <main
+        className={`relative flex flex-col items-center w-full max-w-2xl space-y-10 z-30 transition-transform duration-1000 ${
+          animateUp ? "-translate-y-20" : ""
+        }`}
+      >
+        <div className="text-center text-white text-4xl space-y-2 ease-in-out">
           <Typewriter
             options={{
               strings: [
@@ -116,12 +116,7 @@ export default function Home() {
           />
         </div>
 
-        <div
-          id="info-box"
-          className={`transition-transform duration-1000 ease-in-out ${
-            animateUp ? "-translate-y-20" : ""
-          }`}
-        >
+        <div id="info-box">
           <h1 className="text-center text-3xl font-semibold text-white">
             Insert an Image
           </h1>
@@ -136,22 +131,16 @@ export default function Home() {
             </p>
           </div>
         )}
-
-        <div
-          id="data-box"
-          className={`transition-transform duration-1000 ease-in-out ${
-            animateUp ? "-translate-y-20" : ""
-          }`}
-        >
-          {dataRecive && (
-            <div>
-              <p className="text-white-500 bg-gray-800 px-4 py-2 rounded-md shadow-md font-semibold text-center">
-                {dataRecive}
-              </p>
-            </div>
-          )}
-        </div>
       </main>
+      <div id="data-box">
+        {dataRecive && (
+          <div>
+            <p className="text-white-500 bg-gray-800 px-4 py-2 rounded-md shadow-md font-semibold text-center z-30">
+              {dataRecive}
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
