@@ -5,23 +5,15 @@ import tysonCloud from "@/tysoncloud.png";
 import Image from "next/image";
 
 function FileUpload(props: { onResponse: (result: any) => void }) {
-  const [inputVisible, setInputVisible] = useState(false);
-  const [inputVisibleBack, setInputVisibleBack] = useState(false);
   const [fileUpload, setFileUpload] = useState<File | null>(null);
 
-  function noFile(check: boolean) {
-    setInputVisible(check);
-  }
-
-  async function sendImage(event: React.ChangeEvent<HTMLInputElement>) {
+  async function sendImage() {
     const input = document.getElementById("file-upload") as HTMLInputElement;
 
     if (!input || !input.files || !input.files[0]) {
       throw new Error("this shouldn't happen");
     }
 
-    //setArticle("Loading...");
-    noFile(false);
     const formData = new FormData();
     formData.append("file", input.files[0]);
     setFileUpload(input.files[0]);
@@ -37,12 +29,10 @@ function FileUpload(props: { onResponse: (result: any) => void }) {
         props.onResponse(data);
       } else {
         props.onResponse(undefined);
-        setInputVisibleBack(true);
       }
     } catch (error) {
       console.error("Error uploading file:", error);
       props.onResponse(undefined);
-      setInputVisibleBack(true);
     }
   }
 
@@ -76,46 +66,24 @@ function FileUpload(props: { onResponse: (result: any) => void }) {
             </div>
           </div>
         </div>
-
-        {inputVisible && (
-          <div>
-            <p className="text-red-500 bg-gray-800 px-4 py-2 rounded-md shadow-md font-semibold text-center">
-              Please select a file to upload
-            </p>
-          </div>
-        )}
-
-        {inputVisibleBack && (
-          <div>
-            <p className="text-red-500 bg-gray-800 px-4 py-2 rounded-md shadow-md font-semibold text-center">
-              Failed to send image
-            </p>
-          </div>
-        )}
       </div>
     </>
   );
 }
 
 export default function Home() {
-  const [dataTransfrom, setTransfrom] = useState(false);
+  const [showFailedDialog, setShowFailedDialog] = useState(false);
+  const [animateUp, setAnimateUp] = useState(false);
   const [dataRecive, setArticle] = useState("");
-
-  function transfrom() {
-    setTransfrom(true);
-  }
 
   function onResponse(result: any) {
     if (!result) {
-      transfrom();
+      setShowFailedDialog(true);
       return;
     }
 
-    article(result);
-  }
-
-  function article(data: JSON) {
-    setArticle("data!");
+    setAnimateUp(true);
+    setArticle(JSON.stringify(result));
   }
 
   return (
@@ -131,7 +99,7 @@ export default function Home() {
       <main className="relative flex flex-col items-center w-full max-w-2xl space-y-10 z-30">
         <div
           className={` text-center text-white text-4xl space-y-2 transition-transform duration-1000 ease-in-out ${
-            dataTransfrom ? "-translate-y-20" : ""
+            animateUp ? "-translate-y-20" : ""
           }`}
         >
           <Typewriter
@@ -151,7 +119,7 @@ export default function Home() {
         <div
           id="info-box"
           className={`transition-transform duration-1000 ease-in-out ${
-            dataTransfrom ? "-translate-y-20" : ""
+            animateUp ? "-translate-y-20" : ""
           }`}
         >
           <h1 className="text-center text-3xl font-semibold text-white">
@@ -161,10 +129,18 @@ export default function Home() {
 
         <FileUpload onResponse={onResponse} />
 
+        {showFailedDialog && (
+          <div>
+            <p className="text-red-500 bg-gray-800 px-4 py-2 rounded-md shadow-md font-semibold text-center">
+              Failed to send image
+            </p>
+          </div>
+        )}
+
         <div
           id="data-box"
           className={`transition-transform duration-1000 ease-in-out ${
-            dataTransfrom ? "-translate-y-20" : ""
+            animateUp ? "-translate-y-20" : ""
           }`}
         >
           {dataRecive && (
