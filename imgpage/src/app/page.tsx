@@ -71,20 +71,6 @@ export default function Home() {
         alt="Logo"
       />
 
-      {/* <div className="text-center text-white text-4xl absolute top-4 z-30">
-        <Typewriter
-          options={{
-            strings: [
-              "Search <br> Tool <br> Using <br> Picture <br> Embedded <br> Data",
-              "S.T.U.P.E.D",
-            ],
-            autoStart: true,
-            loop: true,
-            delay: 50,
-          }}
-        />
-      </div> */}
-
       <main className="relative flex flex-col items-center w-full max-w-2xl space-y-10 z-30">
         <div className={` text-center text-white text-4xl space-y-2 transition-transform duration-1000 ease-in-out ${dataTransfrom ? "-translate-y-20" : ""}`}>
           <Typewriter
@@ -135,14 +121,7 @@ export default function Home() {
                   .jpg, .jpeg, .png
                 </span>
               <div className="items-center text-center py-3 px-5 rounded-lg shadow-lg bg-gray-800">{fileUpload ? fileUpload.name : ""}</div> 
-              {/* keep maybe not */}
               </div>
-              {/* <button
-                onClick={sendImage}
-                className="bg-indigo-600 text-white hover:bg-indigo-700 rounded-md py-2 px-6 shadow-md transition duration-300 ease-in-out transform hover:scale-105"
-              >
-                Enter
-              </button> */}
             </div>
 
             {inputVisible && (
