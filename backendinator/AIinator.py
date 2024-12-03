@@ -35,6 +35,6 @@ def embed_texts(texts: list) -> np.ndarray:
     texts = clip.tokenize(texts).to(device)
 
     with torch.no_grad():
-        text_embeddings = model.encode_text(texts)
-        text_values = text_embeddings.cpu().numpy()
-        return text_values
+        text_embedding = model.encode_text(texts)
+        text_values = text_embedding.flatten().cpu().numpy()
+        return text_values.astype(np.float32)
