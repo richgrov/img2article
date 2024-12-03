@@ -6,14 +6,14 @@ with open("/home/masterdash5/Downloads/data.txt", "r") as file:
     array = []
 
     for i, line in enumerate(file):
-        if (i % 2500 == 0):
+        if (i % 10000 == 0):
             print(f"{i}: {line}")
 
             dal.insert(array)
             array.clear()
 
         array.append({
-            "id": id,
+            "id": i,
             "title": line,
             "vectors": ai.embed_text(line)
         })
