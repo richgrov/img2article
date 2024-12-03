@@ -25,28 +25,23 @@ class MilvusDAL:
                 dimension=dimensions
             )
 
+            index_params = MilvusClient.prepare_index_params()
+            index_params.add_index(
+                field_name="vectors",
+                metric_type="L2",
+                index_type="IVF_FLAT",
+                index_name="vector_index",
+                params={"nlist", 128}
+            )
+
+            self.client.create_index(collection_name=collection_name, index_params=index_params)
+
     def load_collection(self):
         self.client.load_collection(collection_name=collection_name)
-
-    def temp_create_index(self):
-        index_params = MilvusClient.prepare_index_params()
-        index_params.add_index(
-            field_name="vectors",
-            metric_type="L2",
-            index_type="IVF_FLAT",
-            index_name="vector_index",
-            params={"nlist", 128}
-        )
-
-        self.client.create_index(collection_name=collection_name, index_params=index_params)
     
-    def insert(self, id, title, vectors):
+    def insert(self, data):
         try:
-            self.client.insert(collection_name, [{
-              "id": id,
-               "title": title,
-               "vectors": vectors
-          }])
+            self.client.insert(collection_name, data)
         except Exception as e:
             print(e)
 
@@ -56,7 +51,7 @@ class MilvusDAL:
             data=[search],
             limit=5,
             anns_field="vectors",
-            output_fields=["id", "title"],
+            output_fields=["title"],
             search_params={
                 "metric_type":"IP",
                 "params": {"nprobe": 10}
