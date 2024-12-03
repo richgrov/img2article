@@ -32,4 +32,4 @@ def embed_text(text_str: str) -> np.ndarray:
     with torch.no_grad():
         text_embedding = model.encode_text(text)
         text_values = text_embedding.flatten().cpu().numpy()
-        return text_values
+        return text_values.astype(np.float32)
