@@ -1,11 +1,8 @@
 import DAL as d
 import AIinator as ai
 
-with open("", "r") as file:
+with open("/home/masterdash5/Downloads/data.txt", "r") as file:
+    dal = d.DAL()
+
     for i, line in enumerate(file):
-        data = {
-            "id" : i,
-            "embed-text" : ai.embed_text(line),
-            "text" : line
-        }
-        d.DAL.insert(data)
+        dal.insert(i, line, ai.embed_text(line))

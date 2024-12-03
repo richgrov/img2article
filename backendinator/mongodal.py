@@ -1,4 +1,4 @@
-from mongo import MongoClient
+from pymongo import MongoClient
 
 database_name = "img2article"
 collection_name = "wikipedia-data"
