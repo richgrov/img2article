@@ -16,8 +16,9 @@ export function FileUpload(props: { onResponse: (result: any) => void }) {
 		setFileUpload(input.files[0]);
 
 		try {
-			const response = await fetch("https://jsonplaceholder.typicode.com/photos", {
-				method: "GET"
+			const response = await fetch("https://localhost:8888", {
+				method: "POST",
+				body: formData
 			});
 
 			if (response.ok) {
