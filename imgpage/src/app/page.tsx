@@ -84,12 +84,12 @@ export default function Home() {
     }
 
     setAnimateUp(true);
-    setArticle(JSON.stringify(result));
+    setArticle(result);
   }
 
   return (
     <div
-      className="relative flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-cover bg-center bg-no-repeat text-white"
+      className="relative flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-cover bg-fixed bg-center text-white py-10"
       style={{
         backgroundImage:
           "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/img/ai.jpg')",
@@ -102,9 +102,8 @@ export default function Home() {
       />
 
       <main
-        className={`relative flex flex-col items-center w-full max-w-2xl space-y-10 transition-transform duration-1000 ${
-          animateUp ? "-translate-y-20" : ""
-        }`}
+        className={`relative flex flex-col items-center w-full max-w-2xl space-y-10 transition-transform duration-1000 ${animateUp ? "-translate-y-20" : ""
+          }`}
       >
         <div className="text-white text-4xl space-y-2 ease-in-out">
           <AnimatedLogo />
@@ -125,16 +124,16 @@ export default function Home() {
             </p>
           </div>
         )}
+
+        <div id="data-box">
+          {dataRecive && (
+            <div >
+              <p dangerouslySetInnerHTML={{ __html: dataRecive }}>
+              </p>
+            </div>
+          )}
+        </div>
       </main>
-      <div id="data-box">
-        {dataRecive && (
-          <div>
-            <p className="text-white-500 bg-gray-800 px-4 py-2 rounded-md shadow-md font-semibold text-center">
-              {dataRecive}
-            </p>
-          </div>
-        )}
-      </div>
     </div>
   );
 }

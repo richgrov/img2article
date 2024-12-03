@@ -4,6 +4,7 @@ export function FileUpload(props: { onResponse: (result: any) => void }) {
 	const [fileUpload, setFileUpload] = useState<File | null>(null);
 
 	async function sendImage() {
+		props.onResponse("Loading...")
 		const input = document.getElementById("file-upload") as HTMLInputElement;
 
 		if (!input || !input.files || !input.files[0]) {
@@ -15,14 +16,16 @@ export function FileUpload(props: { onResponse: (result: any) => void }) {
 		setFileUpload(input.files[0]);
 
 		try {
-			const response = await fetch("http://localhost:8888/", {
-				method: "POST",
-				body: formData,
+			const response = await fetch("https://jsonplaceholder.typicode.com/photos", {
+				method: "GET"
 			});
 
 			if (response.ok) {
 				const data = await response.json();
-				props.onResponse(data);
+				console.log(data);
+				const message = "<div class=\"text-white text-center text-4xl px-4 py-2 font-semibold\"><p class=\"px-3 py-2\">Based on your image results<p>";
+				const linkString = data.map((link: any) => `<br><a href= ${link.url} class="text-white text-center text-lg bg-gradient-to-r from-gray-700 to-gray-800 px-4 py-2 mt-5 mb-5 rounded-lg shadow-md font-semibold">${link.title}</a></br>`).join("");
+				props.onResponse(message + linkString + "</div>");
 			} else {
 				props.onResponse(undefined);
 			}
@@ -38,7 +41,7 @@ export function FileUpload(props: { onResponse: (result: any) => void }) {
 				<div className="flex justify-center items-center space-y-4">
 					<label
 						htmlFor="file-upload"
-						className="cursor-pointer bg-gradient-to-r from-gray-800 to-gray-600 text-white py-3 px-8 rounded-lg shadow-lg hover:bg-gradient-to-l text-lg font-semibold"
+						className="bg-gray-800 hover:bg-gray-600 text-white py-3 px-8 rounded-lg shadow-lg hover:ease-in duration-300 text-lg font-semibold"
 					>
 						Upload Image
 					</label>
