@@ -18,18 +18,23 @@ model, preprocess = clip.load("ViT-B/32", device=device)
 
 
 def embed_image(image: Image) -> np.ndarray:
-    image = preprocess(image).unsqueeze(0).to(device)
-
-    with torch.no_grad():
-        image_embedding = model.encode_image(image)
-        image_values = image_embedding.flatten().cpu().numpy()
-        return image_values
-
+    return embed_images(list(image))
 
 def embed_text(text_str: str) -> np.ndarray:
-    text = clip.tokenize(text_str).to(device)
+    return embed_texts(list(text_str))
+
+def embed_images(images: list) -> np.ndarray:
+    images = torch.stack([preprocess(image) for image in images]).to(device)
 
     with torch.no_grad():
-        text_embedding = model.encode_text(text)
+        image_embeddings = model.encode_image(images)
+        image_values = image_embeddings.cpu().numpy()
+        return image_values
+
+def embed_texts(texts: list) -> np.ndarray:
+    texts = clip.tokenize(texts).to(device)
+
+    with torch.no_grad():
+        text_embedding = model.encode_text(texts)
         text_values = text_embedding.flatten().cpu().numpy()
         return text_values.astype(np.float32)
