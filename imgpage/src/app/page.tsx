@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <div
-      className="relative flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-cover bg-center text-white"
+      className="relative flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-cover bg-fixed bg-center text-white py-10"
       style={{
         backgroundImage:
           "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/img/ai.jpg')",
