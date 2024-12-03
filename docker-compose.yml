@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   imgpage:
     image: timmijinks/img2article-frontend:latest
