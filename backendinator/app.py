@@ -28,12 +28,12 @@ def image_encoding():
         array.append({"title": title, "link": link})
         print(article["entity"]["title"], "\n")
 
-    response = make_response("200 YG2G")
+    response = make_response(jsonify(array), 200)
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
 
-    return jsonify(array)
+    return response
 
 
 if __name__ == "__main__":
