@@ -16,15 +16,22 @@ export function FileUpload(props: { onResponse: (result: any) => void }) {
 		setFileUpload(input.files[0]);
 
 		try {
-			const response = await fetch("https://jsonplaceholder.typicode.com/photos", {
-				method: "GET"
+			const response = await fetch("http://localhost:8888/", {
+				method: "POST",
+				body: formData,
 			});
 
 			if (response.ok) {
 				const data = await response.json();
 				console.log(data);
-				const message = "<div class=\"text-white text-center text-4xl px-4 py-2 font-semibold\"><p class=\"px-3 py-2\">Based on your image results<p>";
-				const linkString = data.map((link: any) => `<br><a href= ${link.url} class="text-white text-center text-lg bg-gradient-to-r from-gray-700 to-gray-800 px-4 py-2 mt-5 mb-5 rounded-lg shadow-md font-semibold">${link.title}</a></br>`).join("");
+				const message =
+					'<div class="text-white text-center text-4xl px-4 py-2 font-semibold"><p class="px-3 py-2">Based on your image results<p>';
+				const linkString = data
+					.map(
+						(link: any) =>
+							`<br><a href= ${link.link} class="text-white text-center text-lg bg-gradient-to-r from-gray-700 to-gray-800 px-4 py-2 mt-5 mb-5 rounded-lg shadow-md font-semibold">${link.title}</a></br>`
+					)
+					.join("");
 				props.onResponse(message + linkString + "</div>");
 			} else {
 				props.onResponse(undefined);
